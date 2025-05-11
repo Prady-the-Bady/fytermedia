@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Providers } from './providers';
+import dynamic from 'next/dynamic';
+import { Toaster } from 'react-hot-toast';
 import "./globals.css";
+
+// Dynamically import the CreateContentButton to avoid hydration issues
+const CreateContentButton = dynamic(
+  () => import('@/components/ui/CreateContentButton'),
+  { ssr: false }
+);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,16 +28,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className="dark">
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black text-white antialiased`}>
+        <Providers>
+          {children}
+          <CreateContentButton />
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#1e1e2a',
+                color: '#fff',
+                borderRadius: '0.5rem',
+              },
+              success: {
+                iconTheme: {
+                  primary: '#4f46e5',
+                  secondary: '#ffffff',
+                },
+              },
+              error: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#ffffff',
+                },
+              },
+            }}
+          />
+        </Providers>
       </body>
     </html>
-  );
+  )
 }
