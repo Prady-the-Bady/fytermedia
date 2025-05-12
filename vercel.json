@@ -6,7 +6,7 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "installCommand": "pnpm install"
+        "installCommand": "pnpm install --no-frozen-lockfile"
       }
     }
   ],
