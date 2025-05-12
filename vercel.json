@@ -6,10 +6,12 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "installCommand": "npm install --legacy-peer-deps"
+        "installCommand": "pnpm install"
       }
     }
   ],
+  "framework": "nextjs",
+  "buildCommand": "pnpm run build",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=4096"
   }
