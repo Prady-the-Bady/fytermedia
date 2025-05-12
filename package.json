@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.9.1",
     "@lit-protocol/sdk-nodejs": "^1.1.250",
     "@prisma/client": "^6.7.0",
+    "@react-spring/web": "^9.7.5",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "@tanstack/react-query": "^5.75.7",
